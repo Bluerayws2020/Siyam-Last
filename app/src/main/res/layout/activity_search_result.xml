@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#D2CDCD"
+    tools:context=".activities.SearchResultActivity">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    >
+
+    <include
+        android:id="@+id/include_tab"
+        layout="@layout/toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+    android:id="@+id/lin33"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include_tab"
+        android:orientation="horizontal"
+    >
+    <TextView
+        android:id="@+id/text12"
+        android:layout_width="wrap_content"
+        android:layout_height="90dp"
+        android:background="#C73535"
+        android:text="@string/searching_for_45567"
+        android:layout_gravity="left"
+        android:paddingTop="30dp"
+        android:textColor="@color/white"
+        android:paddingStart="40dp"
+        />
+
+        <TextView
+            android:id="@+id/saerchNumber"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:background="#C73535"
+            android:text="0000"
+            android:paddingTop="30dp"
+            android:textColor="@color/white"
+            android:gravity="start"
+            android:paddingStart="10dp"
+            />
+
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txtPart"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#2F71B6"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lin33"
+        android:text="@string/part_number"
+        android:paddingTop="15dp"
+        android:textColor="@color/white"
+        android:paddingStart="40dp"
+        />
+
+    <TextView
+        android:id="@+id/txtPart2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtPart"
+        android:text="734893"
+        android:layout_gravity="left"
+
+        android:background="@color/white"
+        android:paddingTop="15dp"
+        android:paddingStart="40dp"
+        />
+
+
+
+
+    <TextView
+        android:id="@+id/txtHeight"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#2F71B6"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtPart2"
+        android:text="@string/height"
+        android:paddingTop="15dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/white"
+        android:paddingStart="40dp"
+        />
+
+    <TextView
+        android:id="@+id/txtHeight2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtHeight"
+        android:text="1.55"
+        android:background="@color/white"
+        android:paddingTop="15dp"
+        android:paddingStart="40dp"
+        android:layout_gravity="left"
+
+        />
+
+
+
+    <TextView
+        android:id="@+id/txtWidth"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#2F71B6"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtHeight2"
+        android:text="@string/width"
+        android:paddingTop="15dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/white"
+        android:paddingStart="40dp"
+        />
+
+    <TextView
+        android:id="@+id/txtWidth2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtWidth"
+        android:text="5"
+        android:paddingTop="15dp"
+        android:background="@color/white"
+        android:paddingStart="40dp"
+        android:layout_gravity="left"
+
+        />
+
+
+
+
+    <TextView
+        android:id="@+id/txtFilter"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#2F71B6"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtWidth2"
+        android:text="@string/filter_neck"
+        android:paddingTop="15dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/white"
+        android:paddingStart="40dp"
+        />
+
+    <TextView
+        android:id="@+id/txtFilter2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtFilter"
+        android:text="@string/product_inlet"
+        android:paddingTop="15dp"
+        android:background="@color/white"
+        android:paddingStart="40dp"
+        android:layout_gravity="left"
+
+        />
+
+
+
+
+    <TextView
+        android:id="@+id/txtOutlet"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#2F71B6"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtFilter2"
+        android:text="Outlet"
+        android:paddingTop="15dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/white"
+        android:paddingStart="40dp"
+        />
+
+    <TextView
+        android:id="@+id/txtOutlet2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtOutlet"
+        android:text="2343"
+        android:paddingTop="15dp"
+        android:background="@color/white"
+        android:paddingStart="40dp"
+        android:layout_gravity="left"
+
+        />
+
+
+
+    <TextView
+        android:id="@+id/txtOilCooler"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#2F71B6"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtOutlet2"
+        android:text="Oil Cooler"
+        android:paddingTop="15dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/white"
+        android:paddingStart="40dp"
+        />
+
+    <TextView
+        android:id="@+id/txtOilCooler2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtOilCooler"
+        android:text="2343"
+        android:paddingTop="15dp"
+        android:background="@color/white"
+        android:paddingStart="40dp"
+        android:layout_gravity="left"
+
+        />
+
+
+    <ProgressBar
+        android:id="@+id/pdRecycler"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/show_result_button"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginTop="30dp"
+        android:padding="15dp"
+        android:text="@string/show_result"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:textAllCaps="false"
+        app:cornerRadius="10dp"
+        android:textStyle="bold"
+        android:backgroundTint="#2F71B6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:rippleColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/txtOilCooler2"
+        app:strokeWidth="2dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

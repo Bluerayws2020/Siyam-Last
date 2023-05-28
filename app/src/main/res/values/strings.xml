@@ -1,0 +1,52 @@
+<resources>
+    <string name="app_name">Siyam</string>
+    <string name="continue_as_a_guest">Continue as a Guest</string>
+    <string name="request_login">Request Login</string>
+    <string name="first_name">First Name</string>
+    <string name="company_name">Company Name</string>
+    <string name="email_address">Email Address</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="password">Password</string>
+    <string name="sign_in">Sign in</string>
+    <string name="enter_part_number">Enter part number</string>
+    <string name="search">Search</string>
+    <string name="test">Test</string>
+    <string name="check_all_products_by_siyam">Check all products by Siyam</string>
+    <string name="automotive_radiators">Automotive Radiators</string>
+    <string name="text2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled</string>
+    <string name="download_our_catalogue">Download Our Catalogue</string>
+    <string name="request_login_to_view_more_details">Request Login to view more details</string>
+    <string name="home">HOME</string>
+    <string name="our_products">OUR PRODUCTS</string>
+    <string name="about_siyam_group">ABOUT SIYAM GROUP</string>
+    <string name="contact_us">CONTACT US</string>
+    <string name="siyam_radiators">SIYAM RADIATORS</string>
+    <string name="contact_inforamation_tel">Contact Information Tel: </string>
+    <string name="_00962_7_852_0130">00962 7 852 0130</string>
+    <string name="fax">Fax:</string>
+    <string name="_00962_6_402_0137">00962 6 402 0137</string>
+    <string name="po_box">PO Box:</string>
+    <string name="_164">164</string>
+    <string name="info_sifsaf_com">info@sifsaf.com</string>
+    <string name="address">Address: </string>
+    <string name="amman_jordan">Amman - Jordan</string>
+    <string name="follow_us">Follow Us</string>
+    <string name="part_number">Part Number</string>
+    <string name="searching_for_45567">Searching for: </string>
+    <string name="height">Height</string>
+    <string name="width">Width</string>
+    <string name="filter_neck">Filter Neck</string>
+    <string name="product_inlet">Product Inlet</string>
+    <string name="show_result">Show Result</string>
+    <string name="_758758_mercedes_bus_radiators">758758 - Mercedes Bus Radiators</string>
+    <string name="core_dimensions">Core Dimensions</string>
+    <string name="depth">Depth</string>
+    <string name="_7_234">7.234</string>
+    <string name="sign_up">Sign up</string>
+    <string name="register">Register</string>
+    <string name="username">Username</string>
+    <string name="pdf_link">pdf link</string>
+    <string name="loading">loading</string>
+
+
+</resources>

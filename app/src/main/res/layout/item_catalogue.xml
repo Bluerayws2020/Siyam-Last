@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    app:cardCornerRadius="12dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:margin="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:id="@+id/cataLin"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_margin="10dp"
+        android:orientation="vertical"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+
+
+        <!--    </LinearLayout>-->
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            app:cardCornerRadius="7dp"
+
+            >
+
+            <ImageView
+                android:id="@+id/cataImg"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/photo2" />
+
+        </androidx.cardview.widget.CardView>
+                <TextView
+                    android:id="@+id/pdfTxts"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/pdf_link"
+                    android:gravity="left"
+                    android:paddingTop="20dp"
+                    android:clickable="true"
+android:lines="1"
+                    android:maxLines="1"
+                    android:focusable="true"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    />
+
+    </LinearLayout>
+<!--    <ImageView-->
+<!--        android:id="@+id/line"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:src="@drawable/line"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/cataLin"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        android:layout_marginStart="20dp"-->
+<!--        android:layout_marginEnd="20dp"-->
+<!--        />-->
+
+
+
+</androidx.cardview.widget.CardView>
+
