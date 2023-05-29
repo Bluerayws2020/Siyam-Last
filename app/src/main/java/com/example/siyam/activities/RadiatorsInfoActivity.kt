@@ -97,9 +97,10 @@ Log.d("<M<!@#", ProductsActivity.imageList.toString())
                 LinearLayoutManager.HORIZONTAL,
                 false
             )
+
             imageAdapter = ImageAdapter(ProductsActivity.imageList, object : CatlogeClick {
                 override fun displayCatloge(link: String) {
-                    TODO("Not yet implemented")
+                   Glide.with(this@RadiatorsInfoActivity).load(link).placeholder(R.drawable.glide_place_holder).into(binding.img1)
                 }
 
                 override fun displayCatlogeimage(link: String, img: ImageView) {
@@ -114,9 +115,17 @@ Log.d("<M<!@#", ProductsActivity.imageList.toString())
                 }
 
 
+
             }, applicationContext)
             binding.rvImgs.layoutManager = lm
             binding.rvImgs.adapter = imageAdapter
+            imageAdapter?.listener {
+                link,image,pos ->
+                Glide.with(this@RadiatorsInfoActivity).load(link).placeholder(R.drawable.glide_place_holder).into(binding.img1)
+                Glide.with(this@RadiatorsInfoActivity).load(ProductsActivity.mainImg).placeholder(R.drawable.glide_place_holder).into(image)
+                ProductsActivity.imageList[pos] = ImageLink(ProductsActivity.mainImg!!)
+                ProductsActivity.mainImg = link
+            }
         }
 
 

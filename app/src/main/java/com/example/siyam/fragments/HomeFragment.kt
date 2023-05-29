@@ -56,6 +56,7 @@ companion object{
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
+        (activity as HomeActivity).showProgress()
         return binding.root
     }
 
@@ -66,7 +67,6 @@ companion object{
 
 
         getAllCategoryApi()
-        binding.pdRecycler.show()
         appVM.getAllCategory()
 
 
@@ -116,7 +116,7 @@ if (HelperUtils.getUID(context) == "0"){
     }else {
 
 
-showProgress()
+//showProgress()
 
 
     appVM.getProductByPartNum(
@@ -178,7 +178,9 @@ hideProgress()
         appVM.getAllCategoryResponse().observe(viewLifecycleOwner) { result ->
             when (result) {
                 is NetworkResults.Success -> {
-                    hideProgress()
+//                    hideProgress()
+                    (activity as HomeActivity).hideProgress()
+//                    (activity as HomeActivity).showProgress()
                     if (result.data.msg.status == 200) {
 
                         categoryList = result.data.data
@@ -198,7 +200,7 @@ hideProgress()
                         binding.rvHome.layoutManager = lm
                         binding.rvHome.adapter = homeItemsAdapter
 
-                        binding.pdRecycler.hide()
+
 
 
                     } else {
@@ -206,6 +208,7 @@ hideProgress()
                     }
                 }
                 is NetworkResults.Error -> {
+                    (activity as HomeActivity).hideProgress()
                     result.exception.printStackTrace()
                     if (result.exception is HttpException)
                         showMessage(result.exception.message())

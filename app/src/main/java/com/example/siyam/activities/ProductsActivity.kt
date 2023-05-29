@@ -39,15 +39,15 @@ class ProductsActivity : AppCompatActivity() {
 
 
     companion object{
-        var imageList : List<ImageLink>  = arrayListOf()
+        var imageList : MutableList<ImageLink> = mutableListOf()
         var catalogueList : List<CatalogeList>  = arrayListOf()
         var mainImg: String ?= null
         var description: String ?= null
         var categoryId: String ?= null
         var link: String ?= null
 
-
     }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -189,7 +189,8 @@ if( result.data.data[position].Images.isNullOrEmpty()){
 //    imageList = arrayListOf<String>()
 
 }else {
-    imageList = result.data.data[position].Images!!
+    imageList.clear()
+    imageList += result.data.data[position].Images!!
 }
 
                                 Log.d("LLAAA", imageList.toString())
