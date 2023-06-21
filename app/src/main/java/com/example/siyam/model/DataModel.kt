@@ -103,7 +103,8 @@ data class UserInfo(
 
     data class CatalogeList(
         @SerializedName("img") val img: String,
-        @SerializedName("pdf") val pdf: String
+        @SerializedName("pdf") val pdf: String,
+        @SerializedName("title")val title: String
 
     )
 
@@ -142,11 +143,14 @@ data class AboutUs(
     @SerializedName("data") val data:ArrayList<AboutUsDetails>
 
 
+
+
 )
 
 data class AboutUsDetails(
     @SerializedName("Title") val Title: String,
     @SerializedName("Body") val body: String,
+    @SerializedName("Image") val Image:String
 
 )
 

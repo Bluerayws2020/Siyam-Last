@@ -2,6 +2,8 @@ package com.example.siyam.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log.d
+import android.util.Log.e
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -9,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.NavController
 import androidx.navigation.ui.AppBarConfiguration
+import com.bumptech.glide.Glide
 import com.example.siyam.HomeActivity
 import com.example.siyam.LoginActivity
 import com.example.siyam.R
@@ -91,6 +94,12 @@ appVM.retriveAboutUs()
 
 
                         val data = result.data.data[0]
+                        d("ayham",result.data.data[0].Image)
+                        Glide.with(this).load(result.data.data[0].Image)
+                        //https://www.siyamradiators.com/sites/default/files/2023-06/new-project-18-1.jpg
+                        //https://www.siyamradiators.com/sites/default/files/2023-06/new-project-18-1.jpg
+                            .placeholder(R.drawable.siyamlogo)
+                            .into(binding.headerImg)
                         binding.body .setText(data.body.toHTML())
 
                     } else {

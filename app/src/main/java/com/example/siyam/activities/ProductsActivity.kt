@@ -21,6 +21,7 @@ import com.example.siyam.databinding.ActivityProductsBinding
 import com.example.siyam.databinding.ActivityRadiatorsBinding
 import com.example.siyam.fragments.HomeFragment
 import com.example.siyam.helpers.HelperUtils
+import com.example.siyam.helpers.HelperUtils.CATALOGUE_LIST
 import com.example.siyam.helpers.ProgressDialogFragment
 import com.example.siyam.helpers.ViewUtils.hide
 import com.example.siyam.helpers.ViewUtils.show
@@ -149,7 +150,7 @@ class ProductsActivity : AppCompatActivity() {
                   
                         startActivity(intent)
                         Toast.makeText(this@ProductsActivity, result.data.msg.msg, Toast.LENGTH_SHORT).show()
-                        binding.progressBarUserInstitution.visibility = View.GONE
+//                        binding.progressBarUserInstitution.visibility = View.GONE
 
 
                     } else {
@@ -200,8 +201,10 @@ if( result.data.data[position].Images.isNullOrEmpty()){
                                  categoryId = intent.getStringExtra("category_id")
                                     link = result.data.data[position].file
 
-
-                                startActivity(Intent(this@ProductsActivity, RadiatorsInfoActivity::class.java))
+                                val intent = Intent(this@ProductsActivity, RadiatorsInfoActivity::class.java)
+                               // intent.putExtra("catalogueList",result.data.data[position].cataloge as ArrayList<CatalogeList>)
+                                CATALOGUE_LIST = result.data.data[position].cataloge
+                                startActivity(intent)
 
                                 Log.d("CATA LIST = ", "onMove:  $imageList")
                             }
@@ -210,7 +213,7 @@ if( result.data.data[position].Images.isNullOrEmpty()){
                         binding.rvRadiators.layoutManager = lm
                         binding.rvRadiators.adapter = productItemAdapter
 
-                        binding.progressBarUserInstitution.visibility = View.GONE
+//                        binding.progressBarUserInstitution.visibility = View.GONE
 
 
                     } else {

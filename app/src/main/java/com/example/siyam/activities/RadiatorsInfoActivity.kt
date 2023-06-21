@@ -2,11 +2,17 @@ package com.example.siyam.activities
 
 import android.app.ActionBar
 import android.app.DownloadManager
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
+import android.content.pm.ResolveInfo
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
 import android.util.Log
+import android.util.Log.e
 import android.view.Gravity
 import android.view.View
 import android.widget.ImageView
@@ -16,6 +22,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.FileProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -30,14 +37,17 @@ import com.example.siyam.activities.ProductsActivity.Companion.link
 import com.example.siyam.adapters.*
 import com.example.siyam.databinding.ActivityRadiatorsInfoBinding
 import com.example.siyam.helpers.HelperUtils
+import com.example.siyam.helpers.HelperUtils.CATALOGUE_LIST
 import com.example.siyam.helpers.HelperUtils.toHTML
 import com.example.siyam.helpers.ProgressDialogFragment
 import com.example.siyam.helpers.ViewUtils.hide
 import com.example.siyam.helpers.ViewUtils.show
+import com.example.siyam.model.CatalogeList
 import com.example.siyam.model.ImageLink
 import com.example.siyam.model.NetworkResults
 import com.example.siyam.viewModel.AppViewModel
 import retrofit2.HttpException
+import java.io.File
 
 class RadiatorsInfoActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRadiatorsInfoBinding
@@ -46,6 +56,7 @@ class RadiatorsInfoActivity : AppCompatActivity() {
     private var dataList : List<ImageLink>  = arrayListOf()
     private val appVM by viewModels<AppViewModel>()
     var mpopup: PopupWindow? = null
+    private var catalogueList :ArrayList<CatalogeList> = arrayListOf()
 
     private var productItemAdapter : ProductItemAdapter?= null
 
@@ -56,6 +67,7 @@ class RadiatorsInfoActivity : AppCompatActivity() {
         HelperUtils.setDefaultLanguage(this,"en")
 
         setContentView(binding.root)
+
 
 
         supportActionBar?.hide()
@@ -162,32 +174,29 @@ Log.d("<M<!@#", ProductsActivity.imageList.toString())
         }
 
         binding.downloadCatalogueBtn.setOnClickListener {
-            if (ProductsActivity.catalogueList.size == 0) {
+            if (ProductsActivity.catalogueList.isEmpty()) {
                 Toast.makeText(this, "Theres No File For This Catloge", Toast.LENGTH_SHORT).show()
-            }else
+            }else{
                 binding.pd.hide()
             binding.downloadCatalogueBtn.show()
-            if (link == "" || link.isNullOrEmpty()){
-                showMessage("Theres No File")
-            }else {
-//           downloadPopUp()
+            downloadPopUp()
 //                intent = Intent(this, WebViewCatloge::class.java)
 //                intent.putExtra("link", ProductsActivity.link)
 //                startActivity(intent)
 
-                val url = link
-                val  request = DownloadManager.Request(Uri.parse(url))
-                    .setTitle("syiam$link")
-                    .setDescription("Wating")
-                    .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_ONLY_COMPLETION)
-                    .setAllowedOverMetered(true)
-                val dm = getSystemService(DOWNLOAD_SERVICE) as DownloadManager
-                dm.enqueue(request)
+//                val url = link
+//                val  request = DownloadManager.Request(Uri.parse(url))
+//                    .setTitle("syiam$link")
+//                    .setDescription("Wating")
+//                    .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_ONLY_COMPLETION)
+//                    .setAllowedOverMetered(true)
+//                val dm = getSystemService(DOWNLOAD_SERVICE) as DownloadManager
+//                dm.enqueue(request)
 //showMessage("Download successfully")
 
 
 //            }
-            }
+            }}
 //            showMessage("Download Failed You May download file before")
 
         }
@@ -195,7 +204,6 @@ Log.d("<M<!@#", ProductsActivity.imageList.toString())
 
 
 
-    }
 
 
 
@@ -219,10 +227,76 @@ Log.d("<M<!@#", ProductsActivity.imageList.toString())
         val progressBar = popUpView.findViewById<View>(R.id.progressBarStationItem) as ProgressBar
         progressBar.visibility = View.GONE
 
+        catalogueAdapter = CatalogueAdapter(CATALOGUE_LIST,this,object :CatlogeClick{
+            override fun displayCatloge(link: String) {
+
+                if(link.isNullOrEmpty()){
+                    showMessage("Can't Download")
+                }else{
+                    val url = link
+                    e("ayham", link)
+                    val request = DownloadManager.Request(Uri.parse(url))
+                        .setTitle("syiam$link")
+                        .setDescription("Waiting")
+                        .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+                        .setAllowedOverMetered(true)
+                        .setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "filename.pdf")
+
+                    val dm = getSystemService(DOWNLOAD_SERVICE) as DownloadManager
+                    val downloadId = dm.enqueue(request)
+
+                    // Register a broadcast receiver for download completion
+                    val onComplete = object : BroadcastReceiver() {
+                        override fun onReceive(context: Context?, intent: Intent?) {
+                            val id = intent?.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1)
+                            if (id == downloadId) {
+                                // Open the downloaded PDF file
+                                val file = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "filename.pdf")
+                                val uri = FileProvider.getUriForFile(this@RadiatorsInfoActivity, "com.example.siyam.fileprovider", file)
+
+                                val pdfIntent = Intent(Intent.ACTION_VIEW)
+                                pdfIntent.setDataAndType(uri, "application/pdf")
+                                pdfIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+
+                                // Verify if there is an activity available to handle the intent
+                                val activities: List<ResolveInfo> = packageManager.queryIntentActivities(pdfIntent, 0)
+                                if (activities.isNotEmpty()) {
+                                    startActivity(pdfIntent)
+                                } else {
+                                    // Handle case when no PDF viewer application is installed
+                                    showMessage("No PDF viewer application found")
+                                }
+
+                                // Unregister the broadcast receiver
+                                unregisterReceiver(this)
+                            }
+                        }
+                    }
+
+                    // Register the broadcast receiver for download completion
+                    registerReceiver(onComplete, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
+
+                    showMessage("Download initiated")
+                    mpopup!!.dismiss()
+
+
+
+                }
+            }
+
+            override fun displayCatlogeimage(link: String, img: ImageView) {
+
+            }
+
+        })
+
         val catalogueRV = popUpView.findViewById<RecyclerView>(R.id.rvCatalogue) as RecyclerView
         val dismiss = popUpView.findViewById<ConstraintLayout>(R.id.dismiss) as ConstraintLayout
 
         val lm2 = LinearLayoutManager(this@RadiatorsInfoActivity, LinearLayoutManager.VERTICAL, false)
+        catalogueRV.layoutManager = lm2
+        catalogueRV.adapter = catalogueAdapter
+
 //        catalogueAdapter = CatalogueAdapter(ProductsActivity.catalogueList, applicationContext,object : CatlogeClick{
 //            override fun displayCatloge(link: String) {
 //
@@ -236,10 +310,10 @@ Log.d("<M<!@#", ProductsActivity.imageList.toString())
 //                        startActivity(intent)
 //                    }
 
-
-                intent = Intent(this, WebViewCatloge::class.java)
-                intent.putExtra("link", ProductsActivity.link)
-                startActivity(intent)
+//---------------------this is commented all but must be relooked at -----------------------------------------------
+//                intent = Intent(this, WebViewCatloge::class.java)
+//                intent.putExtra("link", ProductsActivity.link)
+//                startActivity(intent)
 //            }
 //
 //            override fun displayCatlogeimage(link: String, img: ImageView) {
@@ -253,8 +327,7 @@ Log.d("<M<!@#", ProductsActivity.imageList.toString())
             mpopup!!.dismiss()
         }
 
-        catalogueRV.layoutManager = lm2
-        catalogueRV.adapter = catalogueAdapter
+
 
 
 

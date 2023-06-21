@@ -35,23 +35,22 @@
                 android:id="@+id/cataImg"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/photo2" />
+                android:src="@drawable/cataloguevert1" />
 
         </androidx.cardview.widget.CardView>
                 <TextView
                     android:id="@+id/pdfTxts"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/pdf_link"
-                    android:gravity="left"
                     android:paddingTop="20dp"
                     android:clickable="true"
-android:lines="1"
+                    android:lines="1"
                     android:maxLines="1"
                     android:focusable="true"
-                    android:textSize="13sp"
+                    android:textSize="14sp"
                     android:textStyle="bold"
+                    android:layout_gravity="center"
                     />
 
     </LinearLayout>

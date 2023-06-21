@@ -11,6 +11,7 @@ import android.provider.Settings
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.core.text.HtmlCompat
+import com.example.siyam.model.CatalogeList
 import java.util.*
 
 
@@ -26,6 +27,8 @@ object HelperUtils {
     const val PHONE_PROVIDER = "phoneRegister"
     const val CONTACT_US_URL = "front_end/contact_us"
     const val ABOUT_US_URL = "front_end/aboutUs"
+
+    var CATALOGUE_LIST = listOf<CatalogeList>()
 
     fun getLang(mContext: Context?): String {
         val sharedPreferences = mContext?.getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE)

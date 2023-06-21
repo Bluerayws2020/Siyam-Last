@@ -25,13 +25,13 @@ class CatalogueAdapter(private val list: List<CatalogeList>,
 
         Glide.with(context)
             .load(list[position].img)
-            .placeholder(R.drawable.siyamlogo)
-            .error(R.drawable.user)
+            .placeholder(R.drawable.cataloguevert1)
+            .error(R.drawable.cataloguevert1)
             .into(holder.binding.cataImg)
 
 
 
-        holder.binding.pdfTxts.text = list[position].pdf
+        holder.binding.pdfTxts.text = list[position].title
 
 
 
