@@ -21,14 +21,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-    android:id="@+id/lin33"
+        android:id="@+id/lin33"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/include_tab"
         android:orientation="horizontal"
-    >
+            >
     <TextView
         android:id="@+id/text12"
         android:layout_width="wrap_content"
@@ -56,15 +56,46 @@
 
 
     </LinearLayout>
+<LinearLayout
+    android:id="@+id/linee"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/lin33"
+    >
+    <TextView
+        android:id="@+id/txtTitle"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#2F71B6"
+        android:text="@string/title"
+        android:paddingTop="15dp"
+        android:textColor="@color/white"
+        android:paddingStart="40dp"
+        />
 
     <TextView
+        android:id="@+id/txtTitle2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtPart"
+        android:layout_gravity="left"
+
+        android:background="@color/white"
+        android:paddingTop="15dp"
+        android:paddingStart="40dp"
+        />
+
+    <TextView
+        android:layout_marginTop="10dp"
         android:id="@+id/txtPart"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#2F71B6"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lin33"
         android:text="@string/part_number"
         android:paddingTop="15dp"
         android:textColor="@color/white"
@@ -78,7 +109,6 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtPart"
-        android:text="734893"
         android:layout_gravity="left"
 
         android:background="@color/white"
@@ -111,7 +141,6 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtHeight"
-        android:text="1.55"
         android:background="@color/white"
         android:paddingTop="15dp"
         android:paddingStart="40dp"
@@ -143,7 +172,6 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtWidth"
-        android:text="5"
         android:paddingTop="15dp"
         android:background="@color/white"
         android:paddingStart="40dp"
@@ -153,6 +181,35 @@
 
 
 
+
+    <TextView
+        android:id="@+id/txtSiyamRef"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#2F71B6"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtWidth2"
+        android:text="Siyam Ref."
+        android:paddingTop="15dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/white"
+        android:paddingStart="40dp"
+        />
+
+    <TextView
+        android:id="@+id/txtSiyamRef2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtFilter"
+        android:paddingTop="15dp"
+        android:background="@color/white"
+        android:paddingStart="40dp"
+        android:layout_gravity="left"
+
+        />
 
     <TextView
         android:id="@+id/txtFilter"
@@ -176,7 +233,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtFilter"
-        android:text="@string/product_inlet"
+
         android:paddingTop="15dp"
         android:background="@color/white"
         android:paddingStart="40dp"
@@ -209,7 +266,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtOutlet"
-        android:text="2343"
+
         android:paddingTop="15dp"
         android:background="@color/white"
         android:paddingStart="40dp"
@@ -217,6 +274,335 @@
 
         />
 
+
+
+    <TextView
+        android:id="@+id/Nots"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#2F71B6"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtOutlet2"
+        android:text="@string/nots"
+        android:paddingTop="15dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/white"
+        android:paddingStart="40dp"
+        />
+
+    <TextView
+        android:id="@+id/Nots2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtOilCooler"
+
+        android:paddingTop="15dp"
+        android:background="@color/white"
+        android:paddingStart="40dp"
+        android:layout_gravity="left"
+
+        />
+
+
+    <TextView
+        android:id="@+id/Radiator_Type"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#2F71B6"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtOutlet2"
+        android:text="@string/radiator_type"
+        android:paddingTop="15dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/white"
+        android:paddingStart="40dp"
+        />
+
+    <TextView
+        android:id="@+id/Radiator_Type2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtOilCooler"
+
+        android:paddingTop="15dp"
+        android:background="@color/white"
+        android:paddingStart="40dp"
+        android:layout_gravity="left"
+
+        />
+
+
+    <TextView
+        android:id="@+id/Car_Type"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#2F71B6"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtOutlet2"
+        android:text="@string/car_type"
+        android:paddingTop="15dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/white"
+        android:paddingStart="40dp"
+        />
+
+    <TextView
+        android:id="@+id/Car_Type2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtOilCooler"
+
+        android:paddingTop="15dp"
+        android:background="@color/white"
+        android:paddingStart="40dp"
+        android:layout_gravity="left"
+
+        />
+
+
+    <TextView
+        android:id="@+id/model_fitment"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#2F71B6"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtOutlet2"
+        android:text="@string/model_fitment"
+        android:paddingTop="15dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/white"
+        android:paddingStart="40dp"
+        />
+
+    <TextView
+        android:id="@+id/model_fitment2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtOilCooler"
+
+        android:paddingTop="15dp"
+        android:background="@color/white"
+        android:paddingStart="40dp"
+        android:layout_gravity="left"
+
+        />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#2F71B6"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtOutlet2"
+        android:text="@string/year"
+        android:paddingTop="15dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/white"
+        android:paddingStart="40dp"
+        />
+
+    <TextView
+        android:id="@+id/Year"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtOilCooler"
+
+        android:paddingTop="15dp"
+        android:background="@color/white"
+        android:paddingStart="40dp"
+        android:layout_gravity="left"
+
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#2F71B6"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtOutlet2"
+        android:text="@string/core_size"
+        android:paddingTop="15dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/white"
+        android:paddingStart="40dp"
+        />
+
+    <TextView
+        android:id="@+id/Core_Size"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtOilCooler"
+
+        android:paddingTop="15dp"
+        android:background="@color/white"
+        android:paddingStart="40dp"
+        android:layout_gravity="left"
+
+        />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#2F71B6"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtOutlet2"
+        android:text="@string/rows"
+        android:paddingTop="15dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/white"
+        android:paddingStart="40dp"
+        />
+
+    <TextView
+        android:id="@+id/Rows"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtOilCooler"
+
+        android:paddingTop="15dp"
+        android:background="@color/white"
+        android:paddingStart="40dp"
+        android:layout_gravity="left"
+
+        />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#2F71B6"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtOutlet2"
+        android:text="@string/transmission"
+        android:paddingTop="15dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/white"
+        android:paddingStart="40dp"
+        />
+
+    <TextView
+        android:id="@+id/Transmission"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtOilCooler"
+
+        android:paddingTop="15dp"
+        android:background="@color/white"
+        android:paddingStart="40dp"
+        android:layout_gravity="left"
+
+        />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#2F71B6"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtOutlet2"
+        android:text="@string/ome"
+        android:paddingTop="15dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/white"
+        android:paddingStart="40dp"
+        />
+
+    <TextView
+        android:id="@+id/OME"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtOilCooler"
+
+        android:paddingTop="15dp"
+        android:background="@color/white"
+        android:paddingStart="40dp"
+        android:layout_gravity="left"
+
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#2F71B6"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtOutlet2"
+        android:text="@string/ome"
+        android:paddingTop="15dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/white"
+        android:paddingStart="40dp"
+        />
+
+    <ImageView
+        android:id="@+id/productImage"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtOilCooler"
+        android:paddingTop="15dp"
+        android:background="@color/white"
+        android:layout_gravity="center"
+
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#2F71B6"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtOutlet2"
+        android:text="@string/inlet_pipe"
+        android:paddingTop="15dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/white"
+        android:paddingStart="40dp"
+        />
+
+    <TextView
+        android:id="@+id/inlet_Pipe"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtOilCooler"
+
+        android:paddingTop="15dp"
+        android:background="@color/white"
+        android:paddingStart="40dp"
+        android:layout_gravity="left"
+
+        />
 
 
     <TextView
@@ -241,13 +627,43 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtOilCooler"
-        android:text="2343"
+
         android:paddingTop="15dp"
         android:background="@color/white"
         android:paddingStart="40dp"
         android:layout_gravity="left"
 
         />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#2F71B6"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtOutlet2"
+        android:text="Outlet pipe"
+        android:paddingTop="15dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/white"
+        android:paddingStart="40dp"
+        />
+
+    <TextView
+        android:id="@+id/outlet_Pipe"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtOilCooler"
+
+        android:paddingTop="15dp"
+        android:background="@color/white"
+        android:paddingStart="40dp"
+        android:layout_gravity="left"
+
+        />
+</LinearLayout>
 
 
     <ProgressBar
@@ -281,7 +697,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:rippleColor="@color/white"
-        app:layout_constraintTop_toBottomOf="@+id/txtOilCooler2"
+        app:layout_constraintTop_toBottomOf="@+id/linee"
         app:strokeWidth="2dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

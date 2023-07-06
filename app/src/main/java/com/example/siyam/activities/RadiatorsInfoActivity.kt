@@ -2,10 +2,7 @@ package com.example.siyam.activities
 
 import android.app.ActionBar
 import android.app.DownloadManager
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
-import android.content.IntentFilter
+import android.content.*
 import android.content.pm.ResolveInfo
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -165,12 +162,12 @@ Log.d("<M<!@#", ProductsActivity.imageList.toString())
         }
         binding.signInButton.setOnClickListener {
 
-            if (HelperUtils.getUID(this).isNullOrEmpty()){
+            //if (HelperUtils.getUID(this).isNullOrEmpty()){
 //                binding.pd.hide()
 //                binding.signInButton.show()
                 startActivity(Intent(this@RadiatorsInfoActivity, LoginActivity::class.java))
 
-            }
+            //}
         }
 
         binding.downloadCatalogueBtn.setOnClickListener {
@@ -234,49 +231,27 @@ Log.d("<M<!@#", ProductsActivity.imageList.toString())
                     showMessage("Can't Download")
                 }else{
                     val url = link
-                    e("ayham", link)
-                    val request = DownloadManager.Request(Uri.parse(url))
-                        .setTitle("syiam$link")
-                        .setDescription("Waiting")
-                        .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
-                        .setAllowedOverMetered(true)
-                        .setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "filename.pdf")
+//                    val pdfUrl = "https://www.siyamradiators.com/sites/default/files/2023-06/american-trucks-aluminum-models-no.-1_1.pdf"
 
-                    val dm = getSystemService(DOWNLOAD_SERVICE) as DownloadManager
-                    val downloadId = dm.enqueue(request)
+                    // Convert the PDF URL to a Google Drive URL
+                    val driveUrl = "https://drive.google.com/viewerng/viewer?url=${url}"
+                    val intent = Intent(this@RadiatorsInfoActivity,WebViewActivity::class.java)
+                    intent.putExtra("url",driveUrl)
+                    startActivity(intent)
 
-                    // Register a broadcast receiver for download completion
-                    val onComplete = object : BroadcastReceiver() {
-                        override fun onReceive(context: Context?, intent: Intent?) {
-                            val id = intent?.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1)
-                            if (id == downloadId) {
-                                // Open the downloaded PDF file
-                                val file = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "filename.pdf")
-                                val uri = FileProvider.getUriForFile(this@RadiatorsInfoActivity, "com.example.siyam.fileprovider", file)
+//                    e("ayham",driveUrl)
+//
+//                    val intent = Intent(Intent.ACTION_VIEW)
+//                    intent.data = Uri.parse(driveUrl)
+//
+//                    try {
+//                        startActivity(intent)
+//                    } catch (e: ActivityNotFoundException) {
+//                        // Handle case when no browser app is installed
+//                        Toast.makeText(this@RadiatorsInfoActivity, "No browser application found",Toast.LENGTH_SHORT).show()
+//                    }
 
-                                val pdfIntent = Intent(Intent.ACTION_VIEW)
-                                pdfIntent.setDataAndType(uri, "application/pdf")
-                                pdfIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-
-                                // Verify if there is an activity available to handle the intent
-                                val activities: List<ResolveInfo> = packageManager.queryIntentActivities(pdfIntent, 0)
-                                if (activities.isNotEmpty()) {
-                                    startActivity(pdfIntent)
-                                } else {
-                                    // Handle case when no PDF viewer application is installed
-                                    showMessage("No PDF viewer application found")
-                                }
-
-                                // Unregister the broadcast receiver
-                                unregisterReceiver(this)
-                            }
-                        }
-                    }
-
-                    // Register the broadcast receiver for download completion
-                    registerReceiver(onComplete, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
-
-                    showMessage("Download initiated")
+//                    showMessage("Download initiated")
                     mpopup!!.dismiss()
 
 
@@ -346,6 +321,32 @@ Log.d("<M<!@#", ProductsActivity.imageList.toString())
                 (it as ProgressDialogFragment).dismiss()
         }
     }
+
+//    private fun openDownloadedPDFFile() {
+//        // Open the downloaded PDF file
+//        val file = File(
+//            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
+//            "filename.pdf"
+//        )
+//        val uri = FileProvider.getUriForFile(
+//            this,
+//            "com.example.siyam.fileprovider",
+//            file
+//        )
+//
+//        val pdfIntent = Intent(Intent.ACTION_VIEW)
+//        pdfIntent.setDataAndType(uri, "application/pdf")
+//        pdfIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+//
+//        // Verify if there is an activity available to handle the intent
+//        val activities: List<ResolveInfo> = packageManager.queryIntentActivities(pdfIntent, 0)
+//        if (activities.isNotEmpty()) {
+//            startActivity(pdfIntent)
+//        } else {
+//            // Handle case when no PDF viewer application is installed
+//            Toast.makeText(this,"No Pdf Reader Found",Toast.LENGTH_SHORT).show()
+//        }
+//    }
 
 
 

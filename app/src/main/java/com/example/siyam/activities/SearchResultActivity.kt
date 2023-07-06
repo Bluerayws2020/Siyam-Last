@@ -10,6 +10,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
+import com.bumptech.glide.Glide
 import com.example.siyam.LoginActivity
 import com.example.siyam.R
 import com.example.siyam.RequestLoginActivity
@@ -96,8 +97,6 @@ getProudectByPartNumber()
                    if (result.data.msg.status == 200) {
 
 //
-
-
                        val data = result.data.data
                        binding.txtHeight2.text = data.width
                        binding.txtWidth2.text = data.width
@@ -107,7 +106,20 @@ getProudectByPartNumber()
                        binding.txtOutlet2.text = data.outlet
                        binding.txtOilCooler2.text = data.oli_cooler
                        binding.pdRecycler.visibility = View.GONE
-
+                       binding.txtTitle2.text = data.title
+                       binding.txtSiyamRef2.text = data.siyam_ref
+                       binding.Nots2.text = data.nots
+                       binding.RadiatorType2.text = data.radiator_type
+                       binding.CarType2.text = data.car_type
+                       binding.modelFitment2.text = data.model_fitment
+                       binding.Year.text = data.year
+                       binding.CoreSize.text = data.core_size
+                       binding.Rows.text = data.rows
+                       binding.Transmission.text = data.transmission
+                       binding.OME.text = data.OME
+                       Glide.with(this).load(data.product_image).placeholder(R.drawable.siyamlogo).into(binding.productImage)
+                       binding.inletPipe.text = data.inlet_pipe
+                       binding.outletPipe.text = data.outlet_pipe
 
                    } else {
                        Toast.makeText(this, result.data.msg.msg, Toast.LENGTH_SHORT).show()

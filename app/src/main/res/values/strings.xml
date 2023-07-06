@@ -47,6 +47,17 @@
     <string name="username">Username</string>
     <string name="pdf_link">pdf link</string>
     <string name="loading">loading</string>
+    <string name="title">Title</string>
+    <string name="nots">Nots</string>
+    <string name="radiator_type">Radiator Type</string>
+    <string name="car_type">Car Type</string>
+    <string name="model_fitment">Model / fitment</string>
+    <string name="year">Year</string>
+    <string name="rows">Rows</string>
+    <string name="core_size">Core Size</string>
+    <string name="transmission">Transmission</string>
+    <string name="ome">OME</string>
+    <string name="inlet_pipe">Inlet Pipe</string>
 
 
 </resources>

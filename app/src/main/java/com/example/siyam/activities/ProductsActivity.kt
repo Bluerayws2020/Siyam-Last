@@ -5,7 +5,11 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
+import android.view.KeyEvent
 import android.view.View
+import android.view.inputmethod.EditorInfo
+import android.widget.SearchView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -59,8 +63,30 @@ class ProductsActivity : AppCompatActivity() {
         supportActionBar?.hide()
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
+        binding.partNum.setOnEditorActionListener { _, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH ||
+                (event?.keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_DOWN)
+            ) {
+                if (HelperUtils.getUID(this) == "0") {
+                    showMessage("you have to register or login if you have an account!")
+                    startActivity(Intent(this@ProductsActivity, LoginActivity::class.java))
+                } else {
+                    appVM.getProductByPartNum(
+                        binding.partNum.text.toString()
+                    )
+                    HomeFragment.partNumber = binding.partNum.text.toString()
 
-        getContentByCatId()
+
+            }
+                return@setOnEditorActionListener true
+            }
+            false
+        }
+
+
+
+
+    getContentByCatId()
 
 
         showProgress()

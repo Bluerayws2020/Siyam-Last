@@ -83,7 +83,7 @@ companion object
 
             R.id.home -> {
                 startActivity(Intent(this@HomeActivity, HomeActivity::class.java))
-                item.actionView.setBackgroundColor(ContextCompat.getColor(this,R.color.purple_200))
+                item.actionView?.setBackgroundColor(ContextCompat.getColor(this,R.color.purple_200))
                 selectItem(0,"HOME")
                 return true
             }
@@ -140,6 +140,7 @@ companion object
         val backgroundView = customView.findViewById<LinearLayout>(R.id.backView)
         menuTitle.text = text
         menuTitle.setTextColor(Color.WHITE)
+
         menuItem.actionView = customView
 
         val menuItem1 = menu.getItem(index)

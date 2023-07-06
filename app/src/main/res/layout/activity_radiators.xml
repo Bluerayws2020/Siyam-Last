@@ -91,6 +91,8 @@
                     android:textColor="#12275D"
                     android:textColorHint="#12275D"
                     android:padding="20dp"
+                    android:singleLine="true"
+                    android:imeOptions="actionSearch"
                     android:hint="@string/enter_part_number"/>
 
             </LinearLayout>
