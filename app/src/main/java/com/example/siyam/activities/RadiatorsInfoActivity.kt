@@ -117,6 +117,7 @@ Log.d("<M<!@#", ProductsActivity.imageList.toString())
                        .into(binding.img1)
                 }
 
+
                 override fun displayCatlogeimage(link: String, img: ImageView) {
                     Glide.with(this@RadiatorsInfoActivity)
                         .load(link)
