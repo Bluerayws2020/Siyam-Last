@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.os.Environment
 import android.util.Log
 import android.util.Log.e
+import android.util.Log.w
 import android.view.Gravity
 import android.view.View
 import android.widget.ImageView
@@ -109,14 +110,17 @@ Log.d("<M<!@#", ProductsActivity.imageList.toString())
 
             imageAdapter = ImageAdapter(ProductsActivity.imageList, object : CatlogeClick {
                 override fun displayCatloge(link: String) {
-                   Glide.with(this@RadiatorsInfoActivity).load(link).placeholder(R.drawable.glide_place_holder).into(binding.img1)
+                   Glide.with(this@RadiatorsInfoActivity)
+                       .load(link)
+                       .placeholder(R.drawable.glide_place_holder)
+                       .error(R.drawable.user)
+                       .into(binding.img1)
                 }
 
                 override fun displayCatlogeimage(link: String, img: ImageView) {
                     Glide.with(this@RadiatorsInfoActivity)
                         .load(link)
                         .centerCrop()
-
                         .placeholder(R.drawable.siyamlogo)
                         .error(R.drawable.user)
                         .into(img)
@@ -147,7 +151,7 @@ Log.d("<M<!@#", ProductsActivity.imageList.toString())
             .into(binding.img1)
 
 
-        binding.body.text = ProductsActivity.description?.toHTML()
+
 //        if (HelperUtils.getUID(this).isNullOrEmpty()){
 //            binding.includeTab.personImg.hide()
 //        }else {
@@ -347,6 +351,8 @@ Log.d("<M<!@#", ProductsActivity.imageList.toString())
 //            Toast.makeText(this,"No Pdf Reader Found",Toast.LENGTH_SHORT).show()
 //        }
 //    }
+
+
 
 
 
