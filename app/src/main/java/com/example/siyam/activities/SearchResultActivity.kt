@@ -28,14 +28,12 @@ import retrofit2.HttpException
 class SearchResultActivity : AppCompatActivity() {
 
     private val appVM by viewModels<AppViewModel>()
-
     private lateinit var binding: ActivitySearchResultBinding
-
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySearchResultBinding.inflate(layoutInflater)
+
+
 
         setContentView(binding.root)
         supportActionBar?.hide()

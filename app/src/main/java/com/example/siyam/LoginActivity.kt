@@ -94,7 +94,7 @@ class LoginActivity : AppCompatActivity() {
                         saveCarData(result.data.data.user_info.uid,result.data.data.msg)
 
                     } else {
-                        Toast.makeText(this@LoginActivity," result.data.data.msg.toString()", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@LoginActivity," ${result.data.data.msg}", Toast.LENGTH_SHORT).show()
 
                         binding.pd.hide()
                         binding.signInButton.show()

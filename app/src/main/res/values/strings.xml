@@ -58,6 +58,7 @@
     <string name="transmission">Transmission</string>
     <string name="ome">OME</string>
     <string name="inlet_pipe">Inlet Pipe</string>
+    <string name="product_details">Product Details</string>
 
 
 </resources>

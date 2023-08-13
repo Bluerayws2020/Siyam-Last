@@ -192,6 +192,7 @@ hideProgress()
 
                                 val intent = Intent(requireContext(), ProductsActivity::class.java)
                                 intent.putExtra("category_id", result.data.data[position].id)
+                                intent.putExtra("cat_name",result.data.data[position].name)
                                 startActivity(intent)
 
                             }

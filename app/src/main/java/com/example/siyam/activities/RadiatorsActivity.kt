@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.util.Log.w
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
@@ -48,10 +49,9 @@ class RadiatorsActivity : AppCompatActivity() {
 
 
         getContentByCatId()
+        val categoryName  = intent.getStringExtra("cat_name").toString()
 
-//        staticData()
-
-
+        binding.text1.text = "Check All $categoryName Models By \n SIYAM RADIATORS"
         binding.includeTab.tabTitle.text = "RADIATORS"
         binding.includeTab.menuImg.setImageDrawable(resources.getDrawable(R.drawable.back))
 
@@ -79,7 +79,8 @@ class RadiatorsActivity : AppCompatActivity() {
         binding.searchBtn.setOnClickListener{
             if (HelperUtils.getUID(this).isNullOrEmpty()) {
             }else {
-                startActivity(Intent(this@RadiatorsActivity, SearchResultActivity::class.java))
+                w("ayham","this Invoked")
+                startActivity(Intent(this@RadiatorsActivity, SearchDetailsActivity::class.java))
             }
             }
 

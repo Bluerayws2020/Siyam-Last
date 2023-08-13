@@ -83,23 +83,33 @@ getProudectByPartNumber()
                         val data = result.data.data
 
 
+
                         binding.partNumber.text = "${data.part_number} - $title"?.toHTML()
-                        binding.hight.text =data.core_size.toHTML()
-//                        height?.toHTML()
-                        binding.width.text = data.width.toHTML()
-                        binding.depth.text = data.radiator_type.toHTML()
-                        binding.overallhight.text = data.outlet.toHTML()
-                        binding.ptype.text = data.radiator_type.toHTML()
-                        binding.orintation.text = data.core_size?.toHTML()
-                        binding.filter.text = data.model_fitment?.toHTML()
-                        binding.nilkt.text = data.rows?.toHTML()
-                        binding.outlet.text = data.OME.toHTML()
-                        binding.oil.text = data.oli_cooler .toHTML()
+                        binding.type.text = data.radiator_type
+                        binding.fitmentModel.text = data.model_fitment
+                        binding.coreSize.text = data.core_size
+                        binding.noOfRows.text = data.rows
+                        binding.inletPipe.text = data.inlet_pipe
+                        binding.outletPipe.text = data.outlet_pipe
+                        binding.transmission.text = data.transmission
+                        binding.OME.text = data.OME
+                        binding.year.text = data.year
+//                        binding.hight.text =data.core_size.toHTML()
+////                        height?.toHTML()
+//                        binding.width.text = data.width.toHTML()
+//                        binding.depth.text = data.radiator_type.toHTML()
+//                        binding.overallhight.text = data.outlet.toHTML()
+////                        binding.ptype.text = data.radiator_type.toHTML()
+//                        binding.orintation.text = data.core_size?.toHTML()
+//                        binding.filter.text = data.model_fitment?.toHTML()
+//                        binding.nilkt.text = data.rows?.toHTML()
+//                        binding.outlet.text = data.OME.toHTML()
+//                        binding.oil.text = data.oli_cooler .toHTML()
 
                         Glide.with(this@SearchDetailsActivity)
 
                             .load(data.product_image)
-                            .centerCrop()
+                            .centerInside()
 
                             .placeholder(R.drawable.siyamlogo)
                             .error(R.drawable.user)

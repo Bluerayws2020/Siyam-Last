@@ -140,14 +140,16 @@ Log.d("<M<!@#", ProductsActivity.imageList.toString())
 
         Glide.with(this@RadiatorsInfoActivity)
             .load(ProductsActivity.mainImg)
-            .centerCrop()
-
             .placeholder(R.drawable.siyamlogo)
             .error(R.drawable.user)
             .into(binding.img1)
 
 
-        binding.body.text = ProductsActivity.description?.toHTML()
+        // load the html text desc of the
+        // radiator
+        binding.body.text = removeHeaderFromHTML(ProductsActivity.description!!).toHTML()
+        Log.w("ayham", "${ProductsActivity.description}")
+        binding.rectangleTV.text = extractHeaderFromHTML(ProductsActivity.description!!)?.toHTML()
 //        if (HelperUtils.getUID(this).isNullOrEmpty()){
 //            binding.includeTab.personImg.hide()
 //        }else {
@@ -347,6 +349,27 @@ Log.d("<M<!@#", ProductsActivity.imageList.toString())
 //            Toast.makeText(this,"No Pdf Reader Found",Toast.LENGTH_SHORT).show()
 //        }
 //    }
+
+    // tke the header only from the html
+    private fun extractHeaderFromHTML(html: String): String? {
+        // Regular expression pattern to match the header text within <h3> tags
+        val pattern = Regex("<h3>(.+?)</h3>")
+
+        // Find the first match of the pattern in the HTML
+        val matchResult = pattern.find(html)
+
+        // If a match is found, extract and return the header text
+        return matchResult?.value
+    }
+
+    // remove the header from the html
+    private fun removeHeaderFromHTML(html: String): String {
+        // Regular expression pattern to match the header text within <h3> tags
+        val pattern = Regex("<h3>(.+?)</h3>")
+
+        // Replace the header text with an empty string
+        return pattern.replace(html, "")
+    }
 
 
 

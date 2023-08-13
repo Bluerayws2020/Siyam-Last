@@ -88,6 +88,10 @@ class ProductsActivity : AppCompatActivity() {
 
     getContentByCatId()
 
+        // set the cat name
+        val categoryName  = intent.getStringExtra("cat_name").toString()
+        binding.text1.text = "Check All $categoryName Models By \n SIYAM RADIATORS"
+
 
         showProgress()
 //        staticData()
@@ -172,7 +176,7 @@ class ProductsActivity : AppCompatActivity() {
                     hideProgress()
                     if (result.data.msg.status == 200) {
 
-                        val intent = Intent(this@ProductsActivity, SearchResultActivity::class.java)
+                        val intent = Intent(this@ProductsActivity, SearchDetailsActivity::class.java)
                   
                         startActivity(intent)
                         Toast.makeText(this@ProductsActivity, result.data.msg.msg, Toast.LENGTH_SHORT).show()
