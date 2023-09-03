@@ -2,12 +2,22 @@ package com.example.siyam.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.webkit.WebSettings
 import android.webkit.WebViewClient
 import androidx.databinding.BindingAdapter
+import androidx.lifecycle.lifecycleScope
 import com.example.siyam.R
 import com.example.siyam.databinding.ActivityWebViewBinding
+import com.example.siyam.helpers.ViewUtils.hide
+import com.example.siyam.helpers.ViewUtils.show
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import java.io.BufferedInputStream
+import java.io.InputStream
+import java.net.HttpURLConnection
+import java.net.URL
 
 class WebViewActivity : AppCompatActivity() {
 
@@ -18,21 +28,15 @@ class WebViewActivity : AppCompatActivity() {
         binding = ActivityWebViewBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.pb.show()
+
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         val url = intent.getStringExtra("url").toString()
 
-        binding.webView.apply {
-            webViewClient = WebViewClient()
-            loadUrl(url!!)
-        }
+        loadPdfFromUrl(url)
 
-        binding.webView.settings.javaScriptEnabled = true
-        binding.webView.settings.userAgentString = "Custom User Agent"
-        val webSettings: WebSettings = binding.webView.settings
-        webSettings.userAgentString = "Mozilla/5.0 (Linux; Android 11; Pixel 5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Mobile Safari/537.36"
-        webSettings.loadWithOverviewMode = true
-        webSettings.useWideViewPort = true
+
 
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -42,6 +46,32 @@ class WebViewActivity : AppCompatActivity() {
                 true
             }
             else -> super.onOptionsItemSelected(item)
+        }
+    }
+    private fun loadPdfFromUrl( pdfUrl: String) {
+        lifecycleScope.launch(Dispatchers.IO) {
+            try {
+                Log.e("url", pdfUrl)
+                val url = URL(pdfUrl)
+                val connection: HttpURLConnection = url.openConnection() as HttpURLConnection
+                connection.connect()
+                val length = connection.contentLength
+                val inputStream: InputStream = BufferedInputStream(url.openStream(), length)
+
+                launch(Dispatchers.Main) {
+                    binding.webView.fromStream(inputStream)
+                        .onLoad {
+                            binding.pb.hide()
+                        }
+                        .onPageChange { page, pageCount ->
+                            // Page has changed
+                        }
+                        .load()
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+                Log.e("ayham",e.toString())
+            }
         }
     }
 

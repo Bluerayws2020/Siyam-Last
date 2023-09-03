@@ -1,13 +1,8 @@
 package com.example.siyam.activities
 
-import android.app.ActionBar
-import android.app.DownloadManager
 import android.content.*
-import android.content.pm.ResolveInfo
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Environment
 import android.util.Log
 import android.util.Log.e
 import android.view.Gravity
@@ -172,91 +167,26 @@ Log.d("<M<!@#", ProductsActivity.imageList.toString())
             //}
         }
 
-        binding.downloadCatalogueBtn.setOnClickListener {
-            if (ProductsActivity.catalogueList.isEmpty()) {
-                Toast.makeText(this, "Theres No File For This Catloge", Toast.LENGTH_SHORT).show()
-            }else{
-                binding.pd.hide()
-            binding.downloadCatalogueBtn.show()
-            downloadPopUp()
-//                intent = Intent(this, WebViewCatloge::class.java)
-//                intent.putExtra("link", ProductsActivity.link)
-//                startActivity(intent)
-
-//                val url = link
-//                val  request = DownloadManager.Request(Uri.parse(url))
-//                    .setTitle("syiam$link")
-//                    .setDescription("Wating")
-//                    .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_ONLY_COMPLETION)
-//                    .setAllowedOverMetered(true)
-//                val dm = getSystemService(DOWNLOAD_SERVICE) as DownloadManager
-//                dm.enqueue(request)
-//showMessage("Download successfully")
-
-
-//            }
-            }}
-//            showMessage("Download Failed You May download file before")
-
-        }
-
-
-
-
-
-
-
-
-    private fun downloadPopUp() {
-//        hideProgress()
-
-        val popUpView: View = layoutInflater.inflate(
-            R.layout.popup_window_catalogue,
-            null
-        ) // inflating popup layout
-
-        mpopup = PopupWindow(
-            popUpView, ActionBar.LayoutParams.FILL_PARENT,
-            ActionBar.LayoutParams.MATCH_PARENT, true
-        ) // Creation of popup
-
-        mpopup!!.animationStyle = android.R.style.Animation_Dialog
-        mpopup!!.showAtLocation(popUpView, Gravity.CENTER, 0, 0) // Displaying popup
-
-        val progressBar = popUpView.findViewById<View>(R.id.progressBarStationItem) as ProgressBar
-        progressBar.visibility = View.GONE
-
-        catalogueAdapter = CatalogueAdapter(CATALOGUE_LIST,this,object :CatlogeClick{
+        // init catalogue adapter and recycler
+        if (ProductsActivity.catalogueList.isEmpty()) {
+            binding.pd.hide()
+            Toast.makeText(this, "Theres No File For This Catloge", Toast.LENGTH_SHORT).show()
+            binding.rvCatalogue.hide()
+        }else{
+            binding.pd.hide()
+            catalogueAdapter = CatalogueAdapter(CATALOGUE_LIST,this,object :CatlogeClick{
             override fun displayCatloge(link: String) {
 
                 if(link.isNullOrEmpty()){
                     showMessage("Can't Download")
                 }else{
                     val url = link
-//                    val pdfUrl = "https://www.siyamradiators.com/sites/default/files/2023-06/american-trucks-aluminum-models-no.-1_1.pdf"
 
                     // Convert the PDF URL to a Google Drive URL
-                    val driveUrl = "https://drive.google.com/viewerng/viewer?url=${url}"
+                    val driveUrl = url
                     val intent = Intent(this@RadiatorsInfoActivity,WebViewActivity::class.java)
                     intent.putExtra("url",driveUrl)
                     startActivity(intent)
-
-//                    e("ayham",driveUrl)
-//
-//                    val intent = Intent(Intent.ACTION_VIEW)
-//                    intent.data = Uri.parse(driveUrl)
-//
-//                    try {
-//                        startActivity(intent)
-//                    } catch (e: ActivityNotFoundException) {
-//                        // Handle case when no browser app is installed
-//                        Toast.makeText(this@RadiatorsInfoActivity, "No browser application found",Toast.LENGTH_SHORT).show()
-//                    }
-
-//                    showMessage("Download initiated")
-                    mpopup!!.dismiss()
-
-
 
                 }
             }
@@ -266,53 +196,15 @@ Log.d("<M<!@#", ProductsActivity.imageList.toString())
             }
 
         })
-
-        val catalogueRV = popUpView.findViewById<RecyclerView>(R.id.rvCatalogue) as RecyclerView
-        val dismiss = popUpView.findViewById<ConstraintLayout>(R.id.dismiss) as ConstraintLayout
-
-        val lm2 = LinearLayoutManager(this@RadiatorsInfoActivity, LinearLayoutManager.VERTICAL, false)
-        catalogueRV.layoutManager = lm2
-        catalogueRV.adapter = catalogueAdapter
-
-//        catalogueAdapter = CatalogueAdapter(ProductsActivity.catalogueList, applicationContext,object : CatlogeClick{
-//            override fun displayCatloge(link: String) {
-//
-////                val intent = Intent(this@RadiatorsInfoActivity, WebViewCatloge::class.java)
-////            intent.putExtra("link",link)
-////                startActivity(intent)
-//
-//                    val webpage: Uri = Uri.parse(link)
-//                    val intent = Intent(Intent.ACTION_VIEW, webpage)
-//                    if (intent.resolveActivity(packageManager) != null) {
-//                        startActivity(intent)
-//                    }
-
-//---------------------this is commented all but must be relooked at -----------------------------------------------
-//                intent = Intent(this, WebViewCatloge::class.java)
-//                intent.putExtra("link", ProductsActivity.link)
-//                startActivity(intent)
-//            }
-//
-//            override fun displayCatlogeimage(link: String, img: ImageView) {
-//                TODO("Not yet implemented")
-//            }
-//
-//        })
-
-
-        dismiss.setOnClickListener{
-            mpopup!!.dismiss()
+            val lm2 = LinearLayoutManager(this@RadiatorsInfoActivity, LinearLayoutManager.HORIZONTAL, false)
+            binding.rvCatalogue.layoutManager = lm2
+            binding.rvCatalogue.adapter = catalogueAdapter
         }
-
-
-
-
 
     }
 
-
     private fun showMessage(message: String?) =
-        Toast.makeText(this@RadiatorsInfoActivity, message, Toast.LENGTH_LONG).show()
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     private fun showProgress() {
         ProgressDialogFragment().show(supportFragmentManager, "progress_dialog")
     }
@@ -324,31 +216,6 @@ Log.d("<M<!@#", ProductsActivity.imageList.toString())
         }
     }
 
-//    private fun openDownloadedPDFFile() {
-//        // Open the downloaded PDF file
-//        val file = File(
-//            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
-//            "filename.pdf"
-//        )
-//        val uri = FileProvider.getUriForFile(
-//            this,
-//            "com.example.siyam.fileprovider",
-//            file
-//        )
-//
-//        val pdfIntent = Intent(Intent.ACTION_VIEW)
-//        pdfIntent.setDataAndType(uri, "application/pdf")
-//        pdfIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-//
-//        // Verify if there is an activity available to handle the intent
-//        val activities: List<ResolveInfo> = packageManager.queryIntentActivities(pdfIntent, 0)
-//        if (activities.isNotEmpty()) {
-//            startActivity(pdfIntent)
-//        } else {
-//            // Handle case when no PDF viewer application is installed
-//            Toast.makeText(this,"No Pdf Reader Found",Toast.LENGTH_SHORT).show()
-//        }
-//    }
 
     // tke the header only from the html
     private fun extractHeaderFromHTML(html: String): String? {
